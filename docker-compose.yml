@@ -3,13 +3,14 @@ elasticsearch:
   ports:
     - "9200:9200"
 logstash:
-  image: deviantony/elk-logstash
+  image: logstash:1.5
   volumes:
     - logstash-conf:/etc/logstash/conf.d
   ports:
     - "5000:5000"  
   links:
     - elasticsearch
+  command: logstash -v -f /etc/logstash/conf.d/logstash.conf
 kibana3:
   image: deviantony/elk-kibana:kibana3
   ports:
