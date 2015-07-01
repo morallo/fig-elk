@@ -1,16 +1,16 @@
 elasticsearch:
-  image: elasticsearch:1.5
+  image: elasticsearch:1.6
   ports:
     - "9200:9200"
 logstash:
-  image: logstash:1.5
+  image: logstash:chop
   volumes:
     - logstash-conf:/etc/logstash/conf.d
   ports:
     - "5000:5000"  
   links:
     - elasticsearch
-  command: logstash -f /etc/logstash/conf.d/logstash.conf
+  command: logstash -v -f /etc/logstash/conf.d/logstash.conf
 kibana4:
   image: kibana:4
   ports:
